@@ -15,8 +15,13 @@ for (var i = 0; i < boards.length; i++) {
     saveOptions.saveMultipleArtboards = true;
     saveOptions.artboardRange = (i+1).toString();
     document.saveAs(aiDoc, saveOptions);
-    thePath = thePath + "-" + boardNumber(i) + ".ai"; //path for each board
-    // alert(thePath);
+    //get board name if there is one
+    var boardName; 
+    if (!boards[i].name.match(/Artboard\s[0-9]+/)) {
+        thePath = thePath + "_" + boards[i].name + ".ai"; //path with artboard name
+    } else {
+        thePath = thePath + "-" + boardNumber(i) + ".ai"; //path with artboard number
+    }
     $outfiles.push(thePath); //Send to Switch Output
 }
 
